@@ -22,7 +22,7 @@ int main()
     SystemCoreClockUpdate();
 
     // Initialisation RTC
-    const auto rtc = Rtc::getInstance();
+    const auto& rtc = Rtc::getInstance();
 
     ///
     RTC_t time;
