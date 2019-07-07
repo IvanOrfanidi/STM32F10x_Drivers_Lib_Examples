@@ -46,11 +46,6 @@
  */
 void NMI_Handler(void)
 {
-    // Reset flag of the control system HSE
-    if(RCC->CIR & RCC_CIR_CSSF) {
-        RCC->CIR |= RCC_CIR_CSSC;
-    }
-
     while(1) {
     }
 }
