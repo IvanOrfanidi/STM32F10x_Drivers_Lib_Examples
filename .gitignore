@@ -1,3 +1,6 @@
 /Examples/rtc/settings
 /Examples/rtc/debug
 /Examples/rtc/*.dep
+/Examples/usart/settings
+/Examples/usart/debug
+/Examples/usart/*.dep
