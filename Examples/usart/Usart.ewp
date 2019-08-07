@@ -220,7 +220,6 @@
                 <option>
                     <name>CCDefines</name>
                     <state>STM32F10X_MD</state>
-                    <state>USE_FULL_ASSERT</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -353,6 +352,7 @@
                     <state>$PROJ_DIR$\..\..\lib\inc</state>
                     <state>$PROJ_DIR$\vectors</state>
                     <state>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\inc</state>
+                    <state>$PROJ_DIR$</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1032,77 +1032,8 @@
         <file>
             <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\uart.cpp</name>
         </file>
-    </group>
-    <group>
-        <name>STM32F10x_StdPeriph_Lib</name>
         <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\misc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_crc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_dac.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_dbgmcu.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_iwdg.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_rtc.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_sdio.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_StdPeriph_Lib\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</name>
+            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\inc\virtual_port.hpp</name>
         </file>
     </group>
     <group>
