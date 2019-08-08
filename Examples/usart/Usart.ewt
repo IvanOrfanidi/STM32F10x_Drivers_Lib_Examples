@@ -1190,9 +1190,6 @@
         <file>
             <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\uart.cpp</name>
         </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\inc\virtual_port.hpp</name>
-        </file>
     </group>
     <group>
         <name>System Core</name>
