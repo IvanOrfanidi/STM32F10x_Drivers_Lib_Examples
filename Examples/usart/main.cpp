@@ -19,13 +19,45 @@ int main()
     // Update System clock Core
     SystemCoreClockUpdate();
     
+    Uart::Config config;
+    config.wordLength = Uart::WordLength::_8B;
+    config.stopBits = Uart::StopBits::_1;
+    config.parity = Uart::Parity::NO;
+    config.mode = Uart::Mode::TX_RX;
+    config.hardFlowControl = Uart::HardwareFlowControl::NONE;
+    config.baudRate = 115200;
+    config.sysClock = SystemCoreClock;
+    config.oversmapling = false;
+        
+    auto uart1 = Uart::getInstance(USART1);
+    uart1->init(&config);
     
+    config.baudRate = 9600;
+    constexpr size_t SIZE = 256;
+    Uart uart2(USART2, &config, SIZE, SIZE);
 
+    config.baudRate = 19200;
+    config.mode = Uart::Mode::TX;
+    Uart uart3(USART3, &config, SIZE, SIZE);
+    
+    uint8_t buffer[SIZE];
+    size_t len = 0;
+    
     while(true) {
-        /*   Loop  code   */
-        /* -------------- */
-        /* -------------- */
-        /* -------------- */
-        /******************/
+        
+        len = uart1->getLength();
+        if(len > 0) {
+            uart1->receive(buffer, len);
+            uart2.transmit(buffer, len);
+            uart3.transmit(buffer, len);
+        }
+        
+        len = uart2.getLength();
+        if(len > 0) {
+            uart2.receive(buffer, len);
+            uart1->transmit(buffer, len);
+            uart3.transmit(buffer, len);
+        }
+        
     }
 }
