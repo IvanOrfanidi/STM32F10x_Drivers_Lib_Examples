@@ -24,17 +24,23 @@ int main()
     config.parity = Uart::Parity::NO;
     config.mode = Uart::Mode::TX_RX;
     config.hardFlowControl = Uart::HardwareFlowControl::NONE;
-    config.baudRate = 115200;
+    config.baudRate = 9600;
     config.sysClock = SystemCoreClock;
 
     auto uart1 = Uart::getInstance(USART1);
     uart1->init(&config);
 
-    constexpr size_t SIZE = 256;
+    constexpr size_t SIZE = 128;
     Uart uart2(USART2, &config, SIZE, SIZE);
+    
+    config.baudRate = 115200;
+    config.hardFlowControl = Uart::HardwareFlowControl::RTS_CTS;
+    Uart uart3(USART3, &config, SIZE, SIZE);
 
-    uart2.transmit("Hello", 5);
-    uart1->transmit("Hello", 5);
+    constexpr uint8_t msg[] = "Hello World!!!\r\n";
+    uart1->transmit(msg, (sizeof(msg) - 1));
+    uart2.transmit(msg, (sizeof(msg) - 1));
+    uart3.transmit(msg, (sizeof(msg) - 1));
 
     uint8_t buffer[SIZE];
     size_t len = 0;
@@ -43,13 +49,19 @@ int main()
         len = uart1->getLength();
         if(len > 0) {
             uart1->receive(buffer, len);
-            uart1->transmit(buffer, len);
+            uart2.transmit(buffer, len);
         }
 
         len = uart2.getLength();
         if(len > 0) {
             uart2.receive(buffer, len);
-            uart2.transmit(buffer, len);
+            uart1->transmit(buffer, len);
+        }
+        
+        len = uart3.getLength();
+        if(len > 0) {
+            uart3.receive(buffer, len);
+            uart3.transmit(buffer, len);
         }
     }
 }
