@@ -27,12 +27,13 @@ int main()
     config.baudRate = 9600;
     config.sysClock = SystemCoreClock;
 
+    // Create classes USARTs
     auto uart1 = Uart::getInstance(USART1);
     uart1->init(&config);
 
     constexpr size_t SIZE = 128;
     Uart uart2(USART2, &config, SIZE, SIZE);
-    
+
     config.baudRate = 115200;
     config.hardFlowControl = Uart::HardwareFlowControl::RTS_CTS;
     Uart uart3(USART3, &config, SIZE, SIZE);
@@ -57,7 +58,7 @@ int main()
             uart2.receive(buffer, len);
             uart1->transmit(buffer, len);
         }
-        
+
         len = uart3.getLength();
         if(len > 0) {
             uart3.receive(buffer, len);
