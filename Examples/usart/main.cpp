@@ -24,7 +24,7 @@ int main()
     config.parity = Uart::Parity::NO;
     config.mode = Uart::Mode::TX_RX;
     config.hardFlowControl = Uart::HardwareFlowControl::NONE;
-    config.baudRate = 9600;
+    config.baudRate = 115200;
     config.sysClock = SystemCoreClock;
 
     // Create classes USARTs
@@ -34,7 +34,6 @@ int main()
     constexpr size_t SIZE = 128;
     Uart uart2(USART2, &config, SIZE, SIZE);
 
-    config.baudRate = 115200;
     config.hardFlowControl = Uart::HardwareFlowControl::RTS_CTS;
     Uart uart3(USART3, &config, SIZE, SIZE);
 
