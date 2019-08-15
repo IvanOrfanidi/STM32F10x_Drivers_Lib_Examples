@@ -1028,6 +1028,9 @@
     <group>
         <name>STM32F10x_Drivers_Lib</name>
         <file>
+            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\interrupt.cpp</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\rtc.cpp</name>
         </file>
     </group>
