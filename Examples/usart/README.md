@@ -6,13 +6,32 @@ This is a small USART example project.
 ***Get instance class***
 * @param [in] uart - number object USART
 * @retval instance class
->**const Uart* Uart::getInstance(USART_TypeDef* const uart)**
+>**const Uart* getInstance(USART_TypeDef* const uart)**
 ---
 ***Get length data buffer***
 * @retval length data
->**size_t Uart::getLength()**
+>**size_t getLength()**
 ---
 ***Get is empty data buffer***
 * @retval true - empty, false - no empty
->**bool Uart::isEmpty()**
+>**bool isEmpty()**
+---
+***Wait complete transfer data***
+>**void waitingCompleteTransfer()**
+---
+***Transmit data***
+* @param [in] data - pointer to buffer data
+* @param [in] len - length data
+>**void transmit(const uint8_t* data, size_t len)**
+---
+***Receive data***
+* @param [out] data - pointer to buffer data
+* @param [in] len - length buffer for data
+>**size_t receive(uint8_t* data, size_t len)**
+---
+***Clean transmiter***
+>**void cleanTransmit()**
+---
+***Clean receive***
+>**void cleanReceive()**
 ---
