@@ -8,9 +8,11 @@ This is a small USART example project.
 >**const Uart* Uart::getInstance(USART_TypeDef* const uart)**
 
 
+
 ***Get length data buffer***
 * @retval length data
 >**size_t Uart::getLength()**
+
 
 
 ***Get is empty data buffer***
