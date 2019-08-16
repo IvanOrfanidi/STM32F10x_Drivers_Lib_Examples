@@ -1,5 +1,4 @@
 This is a small USART example project
->
 ----------------------------------------
 **Supported USART1 USART2 and USART3 interface**
 >
