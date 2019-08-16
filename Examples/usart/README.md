@@ -12,6 +12,7 @@ This is a small USART example project.
 * @retval length data
 >**size_t Uart::getLength()**
 
+
 ***Get is empty data buffer***
 * @retval true - empty, false - no empty
 >**bool Uart::isEmpty()**
