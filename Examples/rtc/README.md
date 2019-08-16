@@ -1,6 +1,8 @@
 This is a small RTC example project.
+----------------------------------------
+**Support Real Time Clock**
+>
 ---
-
 ***Get instance class***
 * @retval instance class
 >**const Rtc* Rtc::getInstance()**
