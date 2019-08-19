@@ -1,0 +1,650 @@
+###############################################################################
+#
+# IAR ELF Linker V8.22.1.15669/W32 for ARM                19/Aug/2019  18:08:18
+# Copyright 2007-2018 IAR Systems AB.
+#
+#    Output file  =  
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Exe\Exti.out
+#    Map file     =  
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\List\Exti.map
+#    Command line =  
+#        -f C:\Users\123\AppData\Local\Temp\EW3507.tmp
+#        (E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj\exti.o
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj\interrupt.o
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj\main.o
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj\startup_stm32f10x_md.o
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj\stm32f10x_it.o
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj\system_stm32f10x.o
+#        -o
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Exe\Exti.out
+#        --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb
+#        --map
+#        E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\List\Exti.map
+#        --config "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.0\arm\config\linker\ST\stm32f103xC.icf" --semihosting --entry
+#        __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor                     = *
+__CPP_Exceptions              = Disabled
+__CPP_Language                = C++14
+__Heap_Handler                = DLMalloc
+__SystemLibrary               = DLib
+__dlib_dynamic_initialization = normal
+__dlib_version                = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The advanced heap was selected because the application calls memory
+allocation functions outside of system library functions, and there
+are calls to deallocation functions in the application.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at 0x08000000 { ro section .intvec };
+"P1":  place in [from 0x08000000 to 0x0803ffff] { ro };
+define block CSTACK with size = 4K, alignment = 8 { };
+define block HEAP with size = 4K, alignment = 8 { };
+"P2":  place in [from 0x20000000 to 0x2000bfff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section                Kind        Address    Size  Object
+  -------                ----        -------    ----  ------
+"A0":                                           0xec
+  .intvec                ro code  0x08000000    0xec  startup_stm32f10x_md.o [1]
+                                - 0x080000ec    0xec
+
+"P1":                                         0x2c1c
+  .text                  ro code  0x080000ec  0x14d4  dlmalloc.o [3]
+  .text                  ro code  0x080015c0     0x6  abort.o [3]
+  .text                  ro code  0x080015c6     0x2  main.o [1]
+  .text                  ro code  0x080015c8    0x2c  xgetmemchunk.o [3]
+  .text                  ro code  0x080015f4    0x14  exit.o [6]
+  .text                  ro code  0x08001608   0x83c  exti.o [1]
+  .text                  ro code  0x08001e44     0xe  interrupt.o [1]
+  .text                  ro code  0x08001e52    0x28  interrupt.o [1]
+  .rodata                const    0x08001e7a     0x1  unwind_debug.o [6]
+  .text                  ro code  0x08001e7c   0x164  interrupt.o [1]
+  .text                  ro code  0x08001fe0     0xa  delop_0.o [4]
+  .text                  ro code  0x08001fec    0x24  newop_0.o [4]
+  .text                  ro code  0x08002010    0x1c  main.o [1]
+  .text                  ro code  0x0800202c     0xe  main.o [1]
+  .text                  ro code  0x0800203a    0x20  interrupt.o [1]
+  .text                  ro code  0x0800205a     0xc  main.o [1]
+  .text                  ro code  0x08002066     0x2  interrupt.o [1]
+  .text                  ro code  0x08002068    0x18  interrupt.o [1]
+  .text                  ro code  0x08002080    0x10  interrupt.o [1]
+  .text                  ro code  0x08002090    0x58  cxxabi.o [4]
+  .text                  ro code  0x080020e8     0xe  interrupt.o [1]
+  .text                  ro code  0x080020f6     0x4  heaptramp0.o [3]
+  .text                  ro code  0x080020fa     0x4  nomemory.o [4]
+  .text                  ro code  0x080020fe     0x2  main.o [1]
+  .text                  ro code  0x08002100    0x18  main.o [1]
+  .text                  ro code  0x08002118     0xc  main.o [1]
+  .text                  ro code  0x08002124    0x18  main.o [1]
+  .text                  ro code  0x0800213c     0x4  main.o [1]
+  .text                  ro code  0x08002140    0x10  main.o [1]
+  .text                  ro code  0x08002150    0x54  interrupt.o [1]
+  .text                  ro code  0x080021a4    0x76  interrupt.o [1]
+  .text                  ro code  0x0800221c    0xa0  cppinit.o [3]
+  .text                  ro code  0x080022bc    0x3a  main.o [1]
+  .text                  ro code  0x080022f6     0x2  main.o [1]
+  .text                  ro code  0x080022f8    0x40  main.o [1]
+  .text                  ro code  0x08002338     0xe  main.o [1]
+  .text                  ro code  0x08002346     0x4  main.o [1]
+  .text                  ro code  0x0800234a    0x20  main.o [1]
+  .text                  ro code  0x0800236a     0x2  main.o [1]
+  .text                  ro code  0x0800236c     0x2  interrupt.o [1]
+  .text                  ro code  0x0800236e    0x5a  interrupt.o [1]
+  .text                  ro code  0x080023c8     0xe  main.o [1]
+  .text                  ro code  0x080023d6    0x2a  main.o [1]
+  .text                  ro code  0x08002400     0x2  main.o [1]
+  .text                  ro code  0x08002402    0x10  main.o [1]
+  .text                  ro code  0x08002412     0x2  main.o [1]
+  .text                  ro code  0x08002414    0x2a  main.o [1]
+  .text                  ro code  0x0800243e    0x3a  main.o [1]
+  .text                  ro code  0x08002478     0x4  main.o [1]
+  .text                  ro code  0x0800247c    0x38  main.o [1]
+  .text                  ro code  0x080024b4     0xc  main.o [1]
+  .text                  ro code  0x080024c0    0x24  main.o [1]
+  .text                  ro code  0x080024e4     0x2  main.o [1]
+  .text                  ro code  0x080024e6     0xc  main.o [1]
+  .text                  ro code  0x080024f2     0x2  main.o [1]
+  .text                  ro code  0x080024f4   0x200  system_stm32f10x.o [1]
+  .text                  ro code  0x080026f4    0x54  main.o [1]
+  .text                  ro code  0x08002748     0xc  main.o [1]
+  .text                  ro code  0x08002754     0x2  main.o [1]
+  .text                  ro code  0x08002756    0x10  main.o [1]
+  .text                  ro code  0x08002766     0xc  main.o [1]
+  .text                  ro code  0x08002772    0x2a  main.o [1]
+  .text                  ro code  0x0800279c     0x2  main.o [1]
+  .text                  ro code  0x0800279e    0x12  main.o [1]
+  .text                  ro code  0x080027b0     0x2  main.o [1]
+  .text                  ro code  0x080027b2     0x2  main.o [1]
+  .text                  ro code  0x080027b4    0x2a  main.o [1]
+  .text                  ro code  0x080027de    0x24  main.o [1]
+  .text                  ro code  0x08002802    0x3a  main.o [1]
+  .text                  ro code  0x0800283c    0x38  main.o [1]
+  .text                  ro code  0x08002874    0x24  main.o [1]
+  .text                  ro code  0x08002898    0x4c  main.o [1]
+  .text                  ro code  0x080028e4    0x40  zero_init3.o [5]
+  .text                  ro code  0x08002924    0x3a  main.o [1]
+  .text                  ro code  0x0800295e     0x2  main.o [1]
+  .text                  ro code  0x08002960    0x38  main.o [1]
+  .text                  ro code  0x08002998    0x24  main.o [1]
+  .text                  ro code  0x080029bc    0x3a  main.o [1]
+  .text                  ro code  0x080029f6     0xc  main.o [1]
+  .text                  ro code  0x08002a02     0x2  main.o [1]
+  .text                  ro code  0x08002a04     0x2  main.o [1]
+  .text                  ro code  0x08002a06     0xc  main.o [1]
+  .text                  ro code  0x08002a12    0x2a  main.o [1]
+  .text                  ro code  0x08002a3c     0x2  main.o [1]
+  .text                  ro code  0x08002a3e     0x2  main.o [1]
+  .text                  ro code  0x08002a40    0x2a  main.o [1]
+  .text                  ro code  0x08002a6a    0x2e  main.o [1]
+  .text                  ro code  0x08002a98    0x10  main.o [1]
+  .text                  ro code  0x08002aa8    0x14  main.o [1]
+  .text                  ro code  0x08002abc    0x10  main.o [1]
+  .text                  ro code  0x08002acc    0x12  main.o [1]
+  .text                  ro code  0x08002ade    0x10  main.o [1]
+  .text                  ro code  0x08002aee     0xe  main.o [1]
+  .text                  ro code  0x08002afc    0x2c  copy_init3.o [5]
+  .text                  ro code  0x08002b28    0x28  data_init.o [5]
+  .rodata                const    0x08002b50    0x24  main.o [1]
+  .iar.init_table        const    0x08002b74    0x28  - Linker created -
+  .text                  ro code  0x08002b9c    0x20  cmain_call_ctors.o [5]
+  .text                  ro code  0x08002bbc    0x1e  cmain.o [5]
+  .text                  ro code  0x08002bda     0x4  low_level_init.o [3]
+  .text                  ro code  0x08002bde     0x4  exit.o [3]
+  .text                  ro code  0x08002be4     0xe  cexit.o [5]
+  .text                  ro code  0x08002bf2    0x14  main.o [1]
+  .text                  ro code  0x08002c06    0x10  main.o [1]
+  .text                  ro code  0x08002c16     0x2  main.o [1]
+  .text                  ro code  0x08002c18    0x10  main.o [1]
+  .text                  ro code  0x08002c28    0x10  main.o [1]
+  Initializer bytes      const    0x08002c38    0x14  <for P2-1>
+  .text                  ro code  0x08002c4c    0x10  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c5c     0xc  stm32f10x_it.o [1]
+  .text                  ro code  0x08002c68     0xc  cstartup_M.o [5]
+  .text                  ro code  0x08002c74     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c78     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c7c     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c80     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c84     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c88     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c8c     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c90     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c94     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c98     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002c9c     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ca0     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ca4     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ca8     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cac     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cb0     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cb4     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cb8     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cbc     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cc0     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cc4     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cc8     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ccc     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cd0     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cd4     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cd8     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cdc     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ce0     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ce4     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002ce8     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cec     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cf0     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cf4     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cf8     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002cfc     0x4  startup_stm32f10x_md.o [1]
+  .text                  ro code  0x08002d00     0x4  startup_stm32f10x_md.o [1]
+  SHT$$PREINIT_ARRAY              0x08002d04     0x0  <Block>
+  SHT$$INIT_ARRAY                 0x08002d04     0x4  <Block>
+    .init_array          const    0x08002d04     0x4  interrupt.o [1]
+  __iar_tls$$INIT_ARRAY           0x08002d08     0x0  <Block>
+  .text                  ro code  0x08002d08     0x0  cstart_call_dtors.o [5]
+  .rodata                const    0x08002d08     0x0  zero_init3.o [5]
+  .rodata                const    0x08002d08     0x0  copy_init3.o [5]
+                                - 0x08002d08  0x2c1c
+
+"P2", part 1 of 3:                              0x14
+  P2-1                            0x20000000    0x14  <Init block>
+    .data                inited   0x20000000     0x4  system_stm32f10x.o [1]
+    .data                inited   0x20000004    0x10  system_stm32f10x.o [1]
+                                - 0x20000014    0x14
+
+"P2", part 2 of 3:                             0x8d4
+  .bss                   zero     0x20000018   0x690  interrupt.o [1]
+  .bss                   zero     0x200006a8   0x1d8  dlmalloc.o [3]
+  .bss                   zero     0x20000880    0x40  exti.o [1]
+  .bss                   zero     0x200008c0    0x18  dlmalloc.o [3]
+  .bss                   zero     0x200008d8     0x4  cppinit.o [3]
+  .bss                   zero     0x200008dc     0x4  cppinit.o [3]
+  .bss                   zero     0x200008e0     0x4  new.o [4]
+  .bss                   zero     0x200008e4     0x4  xgetmemchunk.o [3]
+                                - 0x200008e8   0x8d4
+
+"P2", part 3 of 3:                            0x2190
+  .iar.dynexit                    0x200008e8   0x18c  <Block>
+    .iar.dynexit         uninit   0x200008e8     0xc  cppinit.o [3]
+    .iar.dynexit         uninit   0x200008f4   0x180  <Block tail>
+  CSTACK                          0x20000a78  0x1000  <Block>
+    CSTACK               uninit   0x20000a78  0x1000  <Block tail>
+  HEAP                            0x20001a78  0x1000  <Block>
+    HEAP                 uninit   0x20001a78  0x1000  <Block tail>
+                                - 0x20002a78  0x2190
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x8d0:
+          0x20000018  0x8d0
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x14:
+          0x08002c38   0x14
+    1 destination range, total size 0x14:
+          0x20000000   0x14
+
+Extra (__iar_cstart_call_ctors)
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj: [1]
+    exti.o                    2 108                64
+    interrupt.o                 792        4    1 680
+    main.o                    1 652       36
+    startup_stm32f10x_md.o      396
+    stm32f10x_it.o               12
+    system_stm32f10x.o          512       20       20
+    -------------------------------------------------
+    Total:                    5 472       60    1 764
+
+command line: [2]
+    -------------------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    abort.o                       6
+    cppinit.o                   160                20
+    dlmalloc.o                5 332               496
+    exit.o                        4
+    heaptramp0.o                  4
+    low_level_init.o              4
+    xgetmemchunk.o               44                 4
+    -------------------------------------------------
+    Total:                    5 554               520
+
+dlpp7M_tl_nc.a: [4]
+    cxxabi.o                     88
+    delop_0.o                    10
+    new.o                                           4
+    newop_0.o                    36
+    nomemory.o                    4
+    -------------------------------------------------
+    Total:                      138                 4
+
+rt7M_tl.a: [5]
+    cexit.o                      14
+    cmain.o                      30
+    cmain_call_ctors.o           32
+    copy_init3.o                 44
+    cstart_call_dtors.o
+    cstartup_M.o                 12
+    data_init.o                  40
+    zero_init3.o                 64
+    -------------------------------------------------
+    Total:                      236
+
+shb_l.a: [6]
+    exit.o                       20
+    unwind_debug.o                         1
+    -------------------------------------------------
+    Total:                       20        1
+
+    Gaps                          7                 4
+    Linker created                        40    8 576
+-----------------------------------------------------
+    Grand Total:             11 427      101   10 868
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.dynexit$$Base      0x200008e8          --   Gb  - Linker created -
+.iar.dynexit$$Limit     0x20000a74          --   Gb  - Linker created -
+.iar.init_table$$Base   0x08002b74          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x08002b9c          --   Gb  - Linker created -
+?main                   0x08002bbd         Code  Gb  cmain.o [5]
+AHBPrescTable           0x20000004   0x10  Data  Gb  system_stm32f10x.o [1]
+BusFault_Handler        0x08002c63    0x2  Code  Gb  stm32f10x_it.o [1]
+CSTACK$$Base            0x20000a78          --   Gb  - Linker created -
+CSTACK$$Limit           0x20001a78          --   Gb  - Linker created -
+DebugMon_Handler        0x08002c67    0x2  Code  Gb  stm32f10x_it.o [1]
+DtorRecArray            0x200008e8    0xc  Data  Lc  cppinit.o [3]
+EXTI15_10_IRQHandler    0x08001fd7    0xa  Code  Gb  interrupt.o [1]
+EXTI1_IRQHandler        0x08001fa5    0xa  Code  Gb  interrupt.o [1]
+EXTI2_IRQHandler        0x08001faf    0xa  Code  Gb  interrupt.o [1]
+EXTI3_IRQHandler        0x08001fb9    0xa  Code  Gb  interrupt.o [1]
+EXTI4_IRQHandler        0x08001fc3    0xa  Code  Gb  interrupt.o [1]
+EXTI9_5_IRQHandler      0x08001fcd    0xa  Code  Gb  interrupt.o [1]
+Exti::Exti(GPIO_TypeDef *, unsigned char, Exti::Config *)
+                        0x08001609  0x1d6  Code  Gb  exti.o [1]
+Exti::Extis             0x20000880   0x40  Data  Gb  exti.o [1]
+Exti::clearFlag() const
+                        0x08001db5    0x8  Code  Gb  exti.o [1]
+Exti::deInitExti() const
+                        0x08001c9d   0x1a  Code  Gb  exti.o [1]
+Exti::disable() const   0x08001d93   0x22  Code  Gb  exti.o [1]
+Exti::enable() const    0x08001d71   0x22  Code  Gb  exti.o [1]
+Exti::handler()         0x08001dd5   0x3c  Code  Gb  exti.o [1]
+Exti::initExti(Exti::Config *) const
+                        0x08001c5f   0x3e  Code  Gb  exti.o [1]
+Exti::initGpio(Exti::GpioPuPd) const
+                        0x080017df  0x480  Code  Gb  exti.o [1]
+Exti::isFlagStatus() const
+                        0x08001dbd   0x14  Code  Gb  exti.o [1]
+Exti::setInterruptHandler(std::function<void ()>, unsigned char, unsigned char)
+                        0x08001cb7   0xba  Code  Gb  exti.o [1]
+HEAP$$Base              0x20001a78          --   Gb  - Linker created -
+HEAP$$Limit             0x20002a78          --   Gb  - Linker created -
+HardFault_Handler       0x08002c5f    0x2  Code  Gb  stm32f10x_it.o [1]
+Interrupt::Interrupt(unsigned int, std::function<void ()>, unsigned int, unsigned int)
+                        0x08001ea9   0x72  Code  Gb  interrupt.o [1]
+Interrupt::_callback    0x20000018  0x690  Data  Gb  interrupt.o [1]
+Interrupt::handler(unsigned int)
+                        0x08001f49   0x14  Code  Gb  interrupt.o [1]
+Interrupt::~Interrupt()
+                        0x08001f1b   0x2e  Code  Gb  interrupt.o [1]
+MemManage_Handler       0x08002c61    0x2  Code  Gb  stm32f10x_it.o [1]
+NMI_Handler             0x08002c5d    0x2  Code  Gb  stm32f10x_it.o [1]
+RTC_IRQHandler          0x08001f9b    0xa  Code  Gb  interrupt.o [1]
+Region$$Table$$Base     0x08002b74          --   Gb  - Linker created -
+Region$$Table$$Limit    0x08002b9c          --   Gb  - Linker created -
+SHT$$INIT_ARRAY$$Base   0x08002d04          --   Gb  - Linker created -
+SHT$$INIT_ARRAY$$Limit  0x08002d08          --   Gb  - Linker created -
+SHT$$PREINIT_ARRAY$$Base
+                        0x08002d04          --   Gb  - Linker created -
+SHT$$PREINIT_ARRAY$$Limit
+                        0x08002d04          --   Gb  - Linker created -
+SetSysClock             0x080025e1    0x8  Code  Lc  system_stm32f10x.o [1]
+SetSysClockTo72         0x080025e9   0xe0  Code  Lc  system_stm32f10x.o [1]
+SystemCoreClock         0x20000000    0x4  Data  Gb  system_stm32f10x.o [1]
+SystemCoreClockUpdate   0x08002549   0x98  Code  Gb  system_stm32f10x.o [1]
+SystemInit              0x080024f5   0x54  Code  Gb  system_stm32f10x.o [1]
+USART1_IRQHandler       0x08001f7d    0xa  Code  Gb  interrupt.o [1]
+USART2_IRQHandler       0x08001f87    0xa  Code  Gb  interrupt.o [1]
+USART3_IRQHandler       0x08001f91    0xa  Code  Gb  interrupt.o [1]
+UsageFault_Handler      0x08002c65    0x2  Code  Gb  stm32f10x_it.o [1]
+Virtual function table for std::_Func_impl<void (*)(), std::allocator<int>, void, >
+                        0x08002b50   0x24  Data  Gb  main.o [1]
+__aeabi_atexit          0x080020df    0xa  Code  Gb  cxxabi.o [4]
+__aeabi_vec_ctor_nocookie_nodtor
+                        0x08002091   0x28  Code  Gb  cxxabi.o [4]
+__aeabi_vec_dtor        0x080020b9   0x26  Code  Gb  cxxabi.o [4]
+__call_ctors            0x0800221d   0x18  Code  Gb  cppinit.o [3]
+__call_dtors            0x0800226b    0xc  Code  Gb  cppinit.o [3]
+__call_dtors0           0x08002277   0x36  Code  Gb  cppinit.o [3]
+__cexit_call_dtors      0x08002be7         Code  Gb  cexit.o [5]
+__cmain                 0x08002bbd         Code  Gb  cmain.o [5]
+__cstart_call_dtors     0x08002d08         Data  Gb  cstart_call_dtors.o [5]
+__cxa_atexit            0x08002235   0x36  Code  Gb  cppinit.o [3]
+__data_GetMemChunk      0x080015c9   0x2c  Code  Gb  xgetmemchunk.o [3]
+__data_GetMemChunk::start
+                        0x200008e4    0x4  Data  Lc  xgetmemchunk.o [3]
+__dso_handle            0x200008dc    0x4  Data  Gb  cppinit.o [3]
+__exit                  0x080015f5   0x14  Code  Gb  exit.o [6]
+__iar_copy_init3        0x08002afd   0x2c  Code  Gb  copy_init3.o [5]
+__iar_cstart_call_ctors
+                        0x08002b9d   0x20  Code  Gb  cmain_call_ctors.o [5]
+__iar_data_init3        0x08002b29   0x28  Code  Gb  data_init.o [5]
+__iar_debug_exceptions  0x08001e7a    0x1  Data  Gb  unwind_debug.o [6]
+__iar_dlfree            0x080010c7  0x4f6  Code  Gb  dlmalloc.o [3]
+__iar_dlmalloc          0x08000e11  0x2b6  Code  Gb  dlmalloc.o [3]
+__iar_program_start     0x08002c69         Code  Gb  cstartup_M.o [5]
+__iar_systems$$module {Abs}
+                        0x00000001         Data  Gb  command line/config [2]
+__iar_tls$$INIT_ARRAY$$Base
+                        0x08002d08          --   Gb  - Linker created -
+__iar_tls$$INIT_ARRAY$$Limit
+                        0x08002d08          --   Gb  - Linker created -
+__iar_zero_init3        0x080028e5   0x40  Code  Gb  zero_init3.o [5]
+__low_level_init        0x08002bdb    0x4  Code  Gb  low_level_init.o [3]
+__sti__routine          0x08001e7d   0x1c  Code  Lc  interrupt.o [1]
+__vector_table          0x08000000         Data  Gb  startup_stm32f10x_md.o [1]
+_call_main              0x08002bc9         Code  Gb  cmain.o [5]
+_exit                   0x08002be5         Code  Gb  cexit.o [5]
+_gm_                    0x200006a8  0x1d8  Data  Lc  dlmalloc.o [3]
+_main                   0x08002bd7         Code  Gb  cmain.o [5]
+abort                   0x080015c1    0x6  Code  Gb  abort.o [3]
+add_segment             0x080004b1  0x1f2  Code  Lc  dlmalloc.o [3]
+bool std::_Test_callable<void (*)()>(void (*)() const &)
+                        0x080023c9    0xe  Code  Gb  main.o [1]
+bool std::_Test_callable<void (*)()>(void (*)() const &, std::integral_constant<bool, (bool)1>)
+                        0x08002403   0x10  Code  Gb  main.o [1]
+const std::allocator<int>& && std::forward<const std::allocator<int>&>(std::remove_reference<const std::allocator<int>&>::type &)
+                        0x08002413    0x2  Code  Gb  main.o [1]
+decltype((_Invoker<void (*&)(), ...>::_Call(std::forward<void (*&)()>(param#1), std::forward<>(param#2)...))) std::invoke<void (*&)(), >(void (*&)() &&,  &&...)
+                        0x08002c19   0x10  Code  Gb  main.o [1]
+decltype((std::forward<void (*&)()>(param#1)(std::forward<>(param#2)...))) std::_Invoker_functor::_Call<void (*&)(), >(void (*&)() &&,  &&...)
+                        0x08002c29   0x10  Code  Gb  main.o [1]
+exit                    0x08002bdf    0x4  Code  Gb  exit.o [3]
+externalHandler()       0x080028e1    0x4  Code  Gb  main.o [1]
+free                    0x080020f7    0x4  Code  Gb  heaptramp0.o [3]
+init_mparams            0x0800010b   0x32  Code  Lc  dlmalloc.o [3]
+init_top                0x0800013d   0x32  Code  Lc  dlmalloc.o [3]
+main                    0x08002899   0x44  Code  Gb  main.o [1]
+mparams                 0x200008c0   0x18  Data  Lc  dlmalloc.o [3]
+next_abi_dtor_rec       0x200008d8    0x4  Data  Lc  cppinit.o [3]
+operator delete (void *)
+                        0x08001fe1    0xa  Code  Gb  delop_0.o [4]
+operator new (unsigned int)
+                        0x08001fed   0x24  Code  Gb  newop_0.o [4]
+operator new (unsigned int, void *)
+                        0x08002479    0x4  Code  Gb  main.o [1]
+prepend_alloc           0x0800016f  0x342  Code  Lc  dlmalloc.o [3]
+segment_holding         0x080000ed   0x1e  Code  Lc  dlmalloc.o [3]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Compressed_pair<const std::allocator<int>&, void (*)()>(std::_One_then_variadic_args_t, const std::allocator<int>& &&, void (*)() &&...)
+                        0x080024c1   0x24  Code  Gb  main.o [1]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Compressed_pair<const std::allocator<int>&, void (*const &)()>(std::_One_then_variadic_args_t, const std::allocator<int>& &&, void (*const &)() &&...)
+                        0x08002875   0x24  Code  Gb  main.o [1]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Compressed_pair<std::allocator<int>, void (*)()>(std::_One_then_variadic_args_t, std::allocator<int> &&, void (*)() &&...)
+                        0x08002999   0x24  Code  Gb  main.o [1]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Get_first()
+                        0x08002a3d    0x2  Code  Gb  main.o [1]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Get_first() const
+                        0x0800279d    0x2  Code  Gb  main.o [1]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Get_second()
+                        0x08002a3f    0x2  Code  Gb  main.o [1]
+std::_Compressed_pair<std::allocator<int>, void (*)(), (bool)1>::_Get_second() const
+                        0x080027b1    0x2  Code  Gb  main.o [1]
+std::_Func_base<void, >::_Func_base()
+                        0x080024e5    0x2  Code  Gb  main.o [1]
+std::_Func_base<void, >::_Func_base() [subobject]
+                        0x080024b5    0xc  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Empty() const
+                        0x08002125   0x18  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Func_class()
+                        0x08002141   0x10  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Func_class() [subobject]
+                        0x0800205b    0xc  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Getimpl() const
+                        0x0800213d    0x4  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Getspace()
+                        0x0800236b    0x2  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Getspace() const
+                        0x08002401    0x2  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Local() const
+                        0x0800234b   0x20  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Reset_copy(const std::_Func_class<void, >&)
+                        0x08002151   0x54  Code  Gb  interrupt.o [1]
+std::_Func_class<void, >::_Reset_move(std::_Func_class<void, >&&)
+                        0x0800236f   0x5a  Code  Gb  interrupt.o [1]
+std::_Func_class<void, >::_Set(std::_Func_base<void, > *)
+                        0x08002347    0x4  Code  Gb  main.o [1]
+std::_Func_class<void, >::_Swap(std::_Func_class<void, >&)
+                        0x080021a5   0x76  Code  Gb  interrupt.o [1]
+std::_Func_class<void, >::_Tidy()
+                        0x080022bd   0x3a  Code  Gb  main.o [1]
+std::_Func_class<void, >::operator ()() const
+                        0x0800203b   0x20  Code  Gb  interrupt.o [1]
+std::_Func_class<void, >::~_Func_class()
+                        0x08002339    0xe  Code  Gb  main.o [1]
+std::_Func_class<void, >::~_Func_class() [subobject]
+                        0x08002119    0xc  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, > * std::_Allocate<std::_Func_impl<void (*)(), std::allocator<int>, void, >>(unsigned int, std::_Func_impl<void (*)(), std::allocator<int>, void, > *, bool)
+                        0x080027df   0x24  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Callee()
+                        0x08002a07    0xc  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Callee() const
+                        0x08002767    0xc  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Copy(void *) const
+                        0x080026f5   0x54  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Delete_this(bool)
+                        0x08002a6b   0x2e  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Do_call()
+                        0x08002bf3   0x14  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Func_impl<void (*)(), const std::allocator<int>&>(void (*)() &&, const std::allocator<int>& &&)
+                        0x0800247d   0x38  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Func_impl<void (*)(), std::allocator<int>>(void (*)() &&, std::allocator<int> &&)
+                        0x08002961   0x38  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Func_impl<void (*const &)(), const std::allocator<int>&>(void (*const &)() &&, const std::allocator<int>& &&)
+                        0x0800283d   0x38  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Move(void *)
+                        0x080029bd   0x3a  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Myax()
+                        0x080029f7    0xc  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::_Myax() const
+                        0x08002749    0xc  Code  Gb  main.o [1]
+std::_Func_impl<void (*)(), std::allocator<int>, void, >::~_Func_impl()
+                        0x080015c7    0x2  Code  Gb  main.o [1]
+std::_NomemoryNothrow()
+                        0x080020fb    0x4  Code  Gb  nomemory.o [4]
+std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::_Wrap_alloc<std::allocator<int>>(std::allocator<int> &)
+                        0x08002a03    0x2  Code  Gb  main.o [1]
+std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::_Wrap_alloc<std::allocator<int>>(std::allocator<int> const &)
+                        0x08002755    0x2  Code  Gb  main.o [1]
+std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::allocate(unsigned int)
+                        0x08002757   0x10  Code  Gb  main.o [1]
+std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::deallocate(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, unsigned int)
+                        0x08002aa9   0x14  Code  Gb  main.o [1]
+std::__iar_New_hand     0x200008e0    0x4  Data  Gb  new.o [4]
+std::allocator<int> && std::forward<std::allocator<int>>(std::remove_reference<std::allocator<int>>::type &)
+                        0x0800295f    0x2  Code  Gb  main.o [1]
+std::allocator<int>::allocator(const std::allocator<int>&)
+                        0x080024f3    0x2  Code  Gb  main.o [1]
+std::allocator<int>::allocator(const std::allocator<int>&) [subobject]
+                        0x080024e7    0xc  Code  Gb  main.o [1]
+std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>::allocate(unsigned int)
+                        0x0800279f   0x12  Code  Gb  main.o [1]
+std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>::deallocate(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, unsigned int)
+                        0x08002acd   0x12  Code  Gb  main.o [1]
+std::function<void ()> & && std::forward<std::function<void ()> &>(std::remove_reference<std::function<void ()> &>::type &)
+                        0x08002067    0x2  Code  Gb  interrupt.o [1]
+std::function<void ()>& std::function<void ()>::operator =<std::function<void ()>&>(std::function<void ()>& &&)
+                        0x08001e53   0x28  Code  Gb  interrupt.o [1]
+std::function<void ()>::function()
+                        0x08001e45    0xe  Code  Gb  interrupt.o [1]
+std::function<void ()>::function(const std::function<void ()>&)
+                        0x08002069   0x18  Code  Gb  interrupt.o [1]
+std::function<void ()>::function<void (*)()>(void (*)())
+                        0x08002011   0x1c  Code  Gb  main.o [1]
+std::function<void ()>::operator =(std::nullptr_t)
+                        0x080020e9    0xe  Code  Gb  interrupt.o [1]
+std::function<void ()>::swap(std::function<void ()>&)
+                        0x08002081   0x10  Code  Gb  interrupt.o [1]
+std::function<void ()>::~function()
+                        0x0800202d    0xe  Code  Gb  main.o [1]
+std::remove_reference<std::_Func_class<void, > &>::type && std::move<std::_Func_class<void, > &>(std::_Func_class<void, > & &&)
+                        0x0800236d    0x2  Code  Gb  interrupt.o [1]
+std::remove_reference<std::allocator<int>&>::type && std::move<std::allocator<int>&>(std::allocator<int>& &&)
+                        0x08002a05    0x2  Code  Gb  main.o [1]
+std::remove_reference<void (*&)()>::type && std::move<void (*&)()>(void (*&)() &&)
+                        0x080020ff    0x2  Code  Gb  main.o [1]
+sys_alloc               0x080006a9  0x164  Code  Lc  dlmalloc.o [3]
+sys_trim                0x0800080d   0x66  Code  Lc  dlmalloc.o [3]
+tmalloc_large           0x08000881  0x384  Code  Lc  dlmalloc.o [3]
+tmalloc_small           0x08000c05  0x1fe  Code  Lc  dlmalloc.o [3]
+void (*&)() && std::forward<void (*&)()>(std::remove_reference<void (*&)()>::type &)
+                        0x08002c17    0x2  Code  Gb  main.o [1]
+void (*)() && std::forward<void (*)()>(std::remove_reference<void (*)()>::type &)
+                        0x080022f7    0x2  Code  Gb  main.o [1]
+void (*const &)() && std::forward<void (*const &)()>(std::remove_reference<void (*const &)()>::type &)
+                        0x080027b3    0x2  Code  Gb  main.o [1]
+void std::_Deallocate<std::_Func_impl<void (*)(), std::allocator<int>, void, >>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, unsigned int)
+                        0x08002aef    0xe  Code  Gb  main.o [1]
+void std::_Func_class<void, >::_Reset<void (*)()>(void (*)() &&)
+                        0x08002101   0x18  Code  Gb  main.o [1]
+void std::_Func_class<void, >::_Reset_alloc<void (*)(), std::allocator<int>>(void (*)() &&, std::allocator<int> const &)
+                        0x080022f9   0x40  Code  Gb  main.o [1]
+void std::_Invoke_ret<void, void (*&)()>(std::_Forced<void, (bool)1>, void (*&)() &&...)
+                        0x08002c07   0x10  Code  Gb  main.o [1]
+void std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*)(), const std::allocator<int>&>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*)(), const std::allocator<int>& &&...)
+                        0x080023d7   0x2a  Code  Gb  main.o [1]
+void std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*)(), std::allocator<int>>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*)(), std::allocator<int> &&...)
+                        0x08002a13   0x2a  Code  Gb  main.o [1]
+void std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*const &)(), const std::allocator<int>&>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*const &)(), const std::allocator<int>& &&...)
+                        0x08002773   0x2a  Code  Gb  main.o [1]
+void std::_Wrap_alloc<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::destroy<std::_Func_impl<void (*)(), std::allocator<int>, void, >>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *)
+                        0x08002a99   0x10  Code  Gb  main.o [1]
+void std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*)(), const std::allocator<int>&>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*)(), const std::allocator<int>& &&...)
+                        0x0800243f   0x3a  Code  Gb  main.o [1]
+void std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*)(), std::allocator<int>>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*)(), std::allocator<int> &&...)
+                        0x08002925   0x3a  Code  Gb  main.o [1]
+void std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*const &)(), const std::allocator<int>&>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*const &)(), const std::allocator<int>& &&...)
+                        0x08002803   0x3a  Code  Gb  main.o [1]
+void std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>::destroy<std::_Func_impl<void (*)(), std::allocator<int>, void, >>(std::_Func_impl<void (*)(), std::allocator<int>, void, > *)
+                        0x08002adf   0x10  Code  Gb  main.o [1]
+void std::allocator_traits<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*)(), const std::allocator<int>&>(std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>&, std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*)(), const std::allocator<int>& &&...)
+                        0x08002415   0x2a  Code  Gb  main.o [1]
+void std::allocator_traits<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*)(), std::allocator<int>>(std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>&, std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*)(), std::allocator<int> &&...)
+                        0x08002a41   0x2a  Code  Gb  main.o [1]
+void std::allocator_traits<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::construct<std::_Func_impl<void (*)(), std::allocator<int>, void, >, void (*const &)(), const std::allocator<int>&>(std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>&, std::_Func_impl<void (*)(), std::allocator<int>, void, > *, void (*const &)(), const std::allocator<int>& &&...)
+                        0x080027b5   0x2a  Code  Gb  main.o [1]
+void std::allocator_traits<std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>>::destroy<std::_Func_impl<void (*)(), std::allocator<int>, void, >>(std::allocator<std::_Func_impl<void (*)(), std::allocator<int>, void, >>&, std::_Func_impl<void (*)(), std::allocator<int>, void, > *)
+                        0x08002abd   0x10  Code  Gb  main.o [1]
+
+
+[1] = E:\Home\STM32F10x_Drivers_Lib_Examples\Examples\exti\debug\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = dlpp7M_tl_nc.a
+[5] = rt7M_tl.a
+[6] = shb_l.a
+
+  11 427 bytes of readonly  code memory
+     101 bytes of readonly  data memory
+  10 868 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
