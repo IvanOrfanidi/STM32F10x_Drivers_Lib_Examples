@@ -4,3 +4,6 @@
 /Examples/usart/settings
 /Examples/usart/debug
 /Examples/usart/*.dep
+/Examples/exti/settings
+/Examples/exti/debug
+/Examples/exti/*.dep
