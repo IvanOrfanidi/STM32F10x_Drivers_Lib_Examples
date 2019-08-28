@@ -1,25 +1,18 @@
 
-/* Standart lib */
-#include <iostream>
-#include <time.h>
-
 /* Driver lib */
 #include "exti.hpp"
 
 /// External Handler Interrupt
-void externalHandler(void);
+void externalHandler();
 
 /**
- * MAIN
+ * @brief main
  */
 int main()
 {
-    // Update System clock Core
-    SystemCoreClockUpdate();
-
     // Config EXT Interrupt
     Exti::Config config;
-    config.gpioPuPd = Exti::GpioPuPd::UP;
+    config.gpioPuPd = Exti::GpioPuPd::NOPULL;
     config.mode = Exti::Mode::INTERRUPT;
     config.trigger = Exti::Trigger::RISING_FALLING;
 
@@ -40,7 +33,7 @@ int main()
 /**
  * External Handler Interrupt
  */
-void externalHandler(void)
+void externalHandler()
 {
     __NOP();
 

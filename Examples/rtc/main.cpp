@@ -1,4 +1,3 @@
-
 /* Standart lib */
 #include <iostream>
 #include <time.h>
@@ -9,20 +8,17 @@
 constexpr auto ALARM_TIME = 5U;
 
 /// Alarm Handler Interrupt
-void alarmHandler(void);
+void alarmHandler();
 
 /**
- * MAIN
+ * @brief main
  */
 int main()
 {
-    // Update System clock Core
-    SystemCoreClockUpdate();
-
     // Initialisation RTC
     auto rtc = Rtc::getInstance();
 
-    ///
+    // Time structure
     RTC_t time;
     rtc->getTime(&time);
 
@@ -67,7 +63,7 @@ int main()
 /**
  * Alarm Handler Interrupt
  */
-void alarmHandler(void)
+void alarmHandler()
 {
     const auto rtc = Rtc::getInstance();
     const auto alarmTime = rtc->getTime();

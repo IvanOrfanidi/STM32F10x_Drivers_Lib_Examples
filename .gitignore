@@ -7,3 +7,6 @@
 /Examples/exti/settings
 /Examples/exti/debug
 /Examples/exti/*.dep
+/Examples/systick/settings
+/Examples/systick/debug
+/Examples/systick/*.dep
