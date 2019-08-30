@@ -10,3 +10,6 @@
 /Examples/systick/settings
 /Examples/systick/debug
 /Examples/systick/*.dep
+/Examples/soft_timer/settings
+/Examples/soft_timer/debug
+/Examples/soft_timer/*.dep
