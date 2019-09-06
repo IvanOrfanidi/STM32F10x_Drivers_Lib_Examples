@@ -1,25 +1,16 @@
 
 /* Driver lib */
-#include "exti.hpp"
-
-/// External Handler Interrupt
-void externalHandler();
+#include "watchdog.hpp"
 
 /**
  * @brief main
  */
 int main()
 {
-    // Config EXT Interrupt
-    Exti::Config config;
-    config.gpioPuPd = Exti::GpioPuPd::NOPULL;
-    config.mode = Exti::Mode::INTERRUPT;
-    config.trigger = Exti::Trigger::RISING_FALLING;
-
-    // Initialisation EXT Interrupt
-    Exti exti(GPIOC, 2, &config);
-    exti.setInterruptHandler(externalHandler);
-    exti.enable();
+    // Initialisation
+    auto iwdg = Watchdog::getInstance();
+    iwdg->init(1000);
+    iwdg->start();
 
     while(true) {
         /*   Loop  code   */
@@ -28,18 +19,4 @@ int main()
         /* -------------- */
         /******************/
     }
-}
-
-/**
- * External Handler Interrupt
- */
-void externalHandler()
-{
-    __NOP();
-
-    /*   Alarm  code   */
-    /* --------------- */
-    /* --------------- */
-    /* --------------- */
-    /*******************/
 }

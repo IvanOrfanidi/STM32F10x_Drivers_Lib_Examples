@@ -1188,10 +1188,7 @@
     <group>
         <name>STM32F10x_Drivers_Lib</name>
         <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\exti.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\interrupt.cpp</name>
+            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\watchdog.cpp</name>
         </file>
     </group>
     <group>
