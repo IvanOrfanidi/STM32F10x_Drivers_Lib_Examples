@@ -13,3 +13,6 @@
 /Examples/soft_timer/settings
 /Examples/soft_timer/debug
 /Examples/soft_timer/*.dep
+/Examples/watchdog/settings
+/Examples/watchdog/debug
+/Examples/watchdog/*.dep
