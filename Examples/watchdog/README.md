@@ -5,7 +5,7 @@ This is a small WatchDog Timer example project.
 ---
 ***Get instance class***
 * @retval instance class
->**Watchdog* getInstance()**
+>**Watchdog** getInstance()**
 
 ---
 ***Initialisation watchdog timer***
@@ -40,6 +40,6 @@ This is a small WatchDog Timer example project.
 
 
 ---
-***Sets watchdog prescaler value**
+***Sets watchdog prescaler value***
 * @param [in] - prescaler value (4...256)
->**void setReload(uint16_t reload)**
+>**void setPrescaler(Prescaler prescaler)**
