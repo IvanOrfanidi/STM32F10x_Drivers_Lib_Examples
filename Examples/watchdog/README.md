@@ -1,28 +1,45 @@
-This is a small EXTI example project.
+This is a small WatchDog Timer example project.
 ----------------------------------------
-**Support External Interrupt from 0 to 15**
+**Support watchdog timer**
 >
 ---
-***Сonstructor***
-* @param [in] preemption_priority - preemption priority
-* @param [in] sub_priority - sub priority
-* @param [in] function - the interrupt processing function
->**Exti(GPIO_TypeDef* port, uint8_t pin, Config* const config)*
+***Get instance class***
+* @retval instance class
+>**Watchdog* getInstance()**
+
 ---
-***Set Priority Interrupt***
-* @param [in] preemption_priority - preemption priority, default 0
-* @param [in] sub_priority - sub priority, default 0
->**void setInterruptHandler(std::function<void()> callback, uint8_t preemption, uint8_t sub)**
+***Initialisation watchdog timer***
+* @param [in] period in milliseconds (< 32760) from a watchdog reset until a system reset is issued
+>**void init(uint32_t period)**
+
+
 ---
-***Enable interrupt line***
+***Enable(start) watchdog***
+>**void start()**
+
+
+---
+***Enable(start) watchdog***
 >**void enable()**
+
+
 ---
-***Disable interrupt line***
->**void disable()**
+***Reloads(reset) watchdog counter***
+>**void reset()**
+
+
 ---
-***Clears the EXTI's line pending flags***
->**void clearFlag()**
+***Reloads(reset) watchdog counter***
+>**void reload()**
+
+
 ---
-***Checks whether the specified EXTI line flag is set or reset***
-* @retval true - flag is set, false - flag is reset
->**bool isFlagStatus()**
+***Sets watchdog reload value***
+* @param [in] - reload value
+>**void setReload(uint16_t reload)**
+
+
+---
+***Sets watchdog prescaler value**
+* @param [in] - prescaler value (4...256)
+>**void setReload(uint16_t reload)**
