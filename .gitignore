@@ -16,3 +16,6 @@
 /Examples/watchdog/settings
 /Examples/watchdog/debug
 /Examples/watchdog/*.dep
+/Examples/sdio/settings
+/Examples/sdio/debug
+/Examples/sdio/*.dep
