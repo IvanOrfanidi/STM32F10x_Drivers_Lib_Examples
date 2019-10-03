@@ -18,8 +18,14 @@ int main()
 
     // Initialisation EXT Interrupt
     Exti exti(GPIOC, 2, &config);
-    exti.setInterruptHandler(externalHandler);
+
+    // Create interrupt
+    exti.createInterrupt();
+
+    // Enable interrupt
     exti.enable();
+
+    exti.addSubscriber(externalHandler);
 
     while(true) {
         /*   Loop  code   */

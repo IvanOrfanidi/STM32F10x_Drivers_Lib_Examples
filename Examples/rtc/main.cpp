@@ -85,21 +85,21 @@ int main()
     auto unixTimestamp = rtc->getTime();
     std::cout << "Unix Timestamp " << unixTimestamp << std::endl;
 
-    /// Create and enable interrupt
+    // Create and enable interrupt
     rtc->createInterrupt();
 
-    /// Register subscribers
+    // Register subscribers
     rtc->addSubscriber(SubscriberFirst, Observer::Priority::HIGH);
     rtc->addSubscriber(SubscriberSecond, Observer::Priority::LOW);
 
-    /// Register subjects
+    // Register subjects
     SubjectsFirst subjectFirst;
     rtc->addSubscriber(&subjectFirst, Observer::Priority::HIGH);
 
     SubjectsSecond subjectsSecond;
-    rtc->addSubscriber(&subjectsSecond, Observer::Priority::LOW);
+    rtc->addSubscriber(&subjectsSecond);
 
-    /// Set alarm time
+    // Set alarm time
     unixTimestamp += ALARM_TIME;
     rtc->setAlarm(unixTimestamp);
 
