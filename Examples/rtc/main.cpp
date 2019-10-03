@@ -7,8 +7,49 @@
 
 constexpr auto ALARM_TIME = 5U;
 
-/// Alarm Handler Interrupt
-void alarmHandler();
+bool isAlarm = false;
+
+/// Alarms Handler Interrupt
+void SubscriberFirst();
+void SubscriberSecond();
+
+/**
+ * @brief Class subject with SubjectObserver basic class 
+*/
+class SubjectsFirst : public SubjectObserver {
+  public:
+    /// Constructor default
+    SubjectsFirst() = default;
+
+    /// Virtual function
+    virtual void update()
+    {
+        /*   Subjects First code   */
+        /* ----------------------- */
+        /***************************/
+
+        isAlarm = true;
+    }
+};
+
+/**
+ * @brief Class subject with SubjectObserver basic class 
+*/
+class SubjectsSecond : public SubjectObserver {
+  public:
+    /// Constructor default
+    SubjectsSecond() = default;
+
+    /// Virtual function
+    virtual void update()
+    {
+        /*   Subjects Second code   */
+        /* ------------------------ */
+        /****************************/
+
+        isAlarm = true;
+    }
+};
 
 /**
  * @brief main
@@ -44,8 +85,19 @@ int main()
     auto unixTimestamp = rtc->getTime();
     std::cout << "Unix Timestamp " << unixTimestamp << std::endl;
 
-    /// Set alarm handler
-    rtc->setInterruptHandler(alarmHandler);
+    /// Create and enable interrupt
+    rtc->createInterrupt();
+
+    /// Register subscribers
+    rtc->addSubscriber(SubscriberFirst, Observer::Priority::HIGH);
+    rtc->addSubscriber(SubscriberSecond, Observer::Priority::LOW);
+
+    /// Register subjects
+    SubjectsFirst subjectFirst;
+    rtc->addSubscriber(&subjectFirst, Observer::Priority::HIGH);
+
+    SubjectsSecond subjectsSecond;
+    rtc->addSubscriber(&subjectsSecond, Observer::Priority::LOW);
 
     /// Set alarm time
     unixTimestamp += ALARM_TIME;
@@ -54,24 +106,36 @@ int main()
     while(true) {
         /*   Loop  code   */
         /* -------------- */
-        /* -------------- */
-        /* -------------- */
         /******************/
+
+        if(isAlarm) {
+            isAlarm = false;
+            const auto alarmTime = rtc->getTime();
+            rtc->setAlarm(alarmTime + ALARM_TIME);
+        }
     }
 }
 
 /**
- * Alarm Handler Interrupt
+ * Alarm Handler Subscriber First Interrupt
  */
-void alarmHandler()
+void SubscriberFirst()
 {
-    const auto rtc = Rtc::getInstance();
-    const auto alarmTime = rtc->getTime();
-    rtc->setAlarm(alarmTime + ALARM_TIME);
+    /*   Subscriber First code   */
+    /* ------------------------- */
+    /*****************************/
 
-    /*   Alarm  code   */
-    /* --------------- */
-    /* --------------- */
-    /* --------------- */
-    /*******************/
+    isAlarm = true;
+}
+
+/**
+ * Alarm Handler Subscriber Second Interrupt
+ */
+void SubscriberSecond()
+{
+    /*   Subscriber Second code   */
+    /* -------------------------- */
+    /******************************/
+
+    isAlarm = true;
 }

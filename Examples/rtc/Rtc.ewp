@@ -78,7 +78,7 @@
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
-                    <state>STM32F103RC	ST STM32F103RC</state>
+                    <state>STM32F103RB	ST STM32F103RB</state>
                 </option>
                 <option>
                     <name>GenLowLevelInterface</name>
@@ -138,7 +138,7 @@
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
-                    <state>STM32F103RC	ST STM32F103RC</state>
+                    <state>STM32F103RB	ST STM32F103RB</state>
                 </option>
                 <option>
                     <name>FPU2</name>
@@ -1028,6 +1028,9 @@
         <name>STM32F10x_Drivers_Lib</name>
         <file>
             <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\interrupt.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\inc\observer.hpp</name>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\src\rtc.cpp</name>
