@@ -17,7 +17,7 @@ int main()
     // Configure 1 tick - 1 msec
     systick->init(SystemCoreClock, 1000);
 
-    auto count = 0U;
+    uint32_t count = 0U;
     while(true) {
         // Delay 1 Sec
         systick->delay(1000);

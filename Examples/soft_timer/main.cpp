@@ -37,6 +37,8 @@ int main()
     SoftTimer softTimer_2(getClock);
     softTimer_2.start(TIMER2_PERIOD);
 
+    SoftTimer softTimer_3();
+
     while(true) {
         ++counter;    // Increment
 
