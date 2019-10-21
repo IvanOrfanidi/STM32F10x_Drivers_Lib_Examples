@@ -19,3 +19,6 @@
 /Examples/sdio/settings
 /Examples/sdio/debug
 /Examples/sdio/*.dep
+/Examples/spi/settings
+/Examples/spi/debug
+/Examples/spi/*.dep
