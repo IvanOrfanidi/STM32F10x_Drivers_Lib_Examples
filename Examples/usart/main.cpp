@@ -13,7 +13,7 @@ int main()
     config.baudRate = 115200;
     config.wordLength = Uart::WordLength::_8B;
     config.parity = Uart::Parity::NO;
-    config.stopBits = Uart::StopBits::_1;
+    config.stopBits = Uart::StopBits::_1B;
     config.hardFlowControl = Uart::HardwareFlowControl::NONE;
     config.sysClock = SystemCoreClock;
 
