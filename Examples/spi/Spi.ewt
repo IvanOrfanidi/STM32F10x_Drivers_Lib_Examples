@@ -2406,7 +2406,4 @@
     <file>
         <name>$PROJ_DIR$\main.cpp</name>
     </file>
-    <file>
-        <name>$PROJ_DIR$\..\..\C\main.ENU.projtempl</name>
-    </file>
 </project>

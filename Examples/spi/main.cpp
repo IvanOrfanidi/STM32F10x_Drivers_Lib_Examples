@@ -1,6 +1,5 @@
 
 
-
 /* Standart lib */
 #include <iostream>
 #include <time.h>
@@ -8,94 +7,60 @@
 /* Driver lib */
 #include "spi.hpp"
 
-#define SPI_USE_INTERRUPT
-
 /**
  * 
  */
-class Accel
-{
+class AccelWithInterrupt {
   public:
-    explicit Accel(Spi* spi) : _spi(spi), _isError(false)
+    explicit AccelWithInterrupt(VirtualPort* port) :
+        _port(port),
+        _isError(false)
     {
         initGpioCs();
-    
-        static constexpr uint8_t DEVICE_ID = 0;
-        static constexpr uint8_t ID = 0xE5;
-        
-        const uint8_t chipID = read(DEVICE_ID);
-        if(ID != chipID) {
+
+        constexpr uint8_t DEVICE_ID = 0;
+        const uint8_t chipType = read(DEVICE_ID);
+
+        constexpr uint8_t CHIP_ID = 0xE5;
+        if(CHIP_ID != chipType) {
             _isError = true;
             return;
         }
     }
-  
-    bool isError() const {
+
+    bool isError() const
+    {
         return _isError;
     }
 
   private:
-    Accel() = delete;
-    
     void initGpioCs() const
     {
         GPIOA->CRL &= ~GPIO_CRL_CNF4;
         GPIOA->CRL |= GPIO_CRL_MODE4_0;
+        GPIOA->BSRR = GPIO_BSRR_BS4;
     }
-        
+
     uint8_t read(uint8_t address) const
     {
-        
-        
-#ifdef SPI_USE_INTERRUPT
-         uint16_t data[1];
-         data[0] = (address | 0x80) << 8 | 0x00;
-        _spi->transmit(data, 1);
-#else
+        uint16_t data[1];
+        data[0] = (address | 0x80) << 8;
+
         enable();
-        _spi->write((address | 0x80) << 8 | 0x00);
-#endif
+        _port->transmit(data, 1);
 
         waitData();
 
-#ifdef SPI_USE_INTERRUPT
-        _spi->receive(data, 1);
-        data[0] = (address | 0x80) << 8 | 0x00;
-        _spi->transmit(data, 1);
+        _port->receive(data, 1);
+        disable();
+
         return data[0];
-#else
-        const auto data = _spi->read();
-        _spi->write((address | 0x80) << 8 | 0x00);
-        disable();
-        return data;
-#endif  
     }
-    
-    /**
-    */
-    uint8_t write(uint8_t address, uint8_t value) const
-    {
-        enable();
-        
-        _spi->write((address | 0x80) << 8 | value);
-        
-        waitData();
-        
-        const auto data = _spi->read();
-        
-        disable();
-        
-        return data;
-    }
-    
+
     void waitData() const
     {
-#ifndef SPI_USE_INTERRUPT
-        while(!_spi->isSetStatusFlag(SPI_SR_TXE)) {
+        while(_port->isEmpty()) {
         }
-        while(!_spi->isSetStatusFlag(SPI_SR_RXNE)) {
-        }
-#endif
     }
 
     void enable() const
@@ -104,14 +69,80 @@ class Accel
         for(volatile int i = 0; i < 100; i++) {
         }
     }
-    
+
     void disable() const
     {
         for(volatile int i = 0; i < 100; i++) {
         }
         GPIOA->BSRR = GPIO_BSRR_BS4;
     }
-    
+
+    VirtualPort* _port;
+    bool _isError;
+};
+
+class AccelWithoutInterrupt {
+  public:
+    AccelWithoutInterrupt(Spi* spi) : _spi(spi), _isError(false)
+    {
+        initGpioCs();
+
+        constexpr uint8_t DEVICE_ID = 0;
+        const uint8_t chipType = read(DEVICE_ID);
+
+        constexpr uint8_t CHIP_ID = 0xE5;
+        if(CHIP_ID != chipType) {
+            _isError = true;
+            return;
+        }
+    }
+
+    bool isError() const
+    {
+        return _isError;
+    }
+
+  private:
+    void initGpioCs() const
+    {
+        GPIOB->CRH &= ~GPIO_CRH_CNF12;
+        GPIOB->CRH |= GPIO_CRH_MODE12_0;
+        GPIOB->BSRR = GPIO_BSRR_BS12;
+    }
+
+    void enable() const
+    {
+        GPIOB->BSRR = GPIO_BSRR_BR12;
+        for(volatile int i = 0; i < 100; i++) {
+        }
+    }
+
+    void disable() const
+    {
+        for(volatile int i = 0; i < 100; i++) {
+        }
+        GPIOB->BSRR = GPIO_BSRR_BS12;
+    }
+
+    uint8_t read(uint8_t address) const
+    {
+        enable();
+        _spi->write(((address << 1) & 0x7E) | 0x80);
+
+        waitData();
+
+        const auto data = _spi->read();
+        disable();
+        return data;
+    }
+
+    void waitData() const
+    {
+        _spi->waitingCompleteTransfer();
+        while(!_spi->isSetStatusFlag(SPI_SR_RXNE)) {
+        }
+    }
+
     Spi* _spi;
     bool _isError;
 };
@@ -126,26 +157,26 @@ int main()
     spiConfig.polarity = Spi::Polarity::HIGH;
     spiConfig.phase = Spi::Phase::_2E;
     spiConfig.firstBit = Spi::FirstBit::MSB;
-    
-#ifdef SPI_USE_INTERRUPT
-    spiConfig.useInterrupt = true;
-    spiConfig.management = Spi::Management::HARD;
-    spiConfig.ssOutput = true;
-#else
-    spiConfig.useInterrupt = false;
-    spiConfig.management = Spi::Management::SOFT;
-    spiConfig.ssOutput = false ;
-#endif
-    
-    auto spi = Spi::getInstance(SPI1);
-    spi->init(&spiConfig);
-    
-    Accel accel(spi);
-    
-    while(true)
-    {
-        
+
+    //    auto spi1 = Spi::getInstance(SPI1);
+    //    spi1->init(&spiConfig);
+    //    spi1->createInterrupt();
+    //
+    //    AccelWithInterrupt accelWithInterrupt(spi1);
+    //    if(accelWithInterrupt.isError()) {
+    //        // Error Accel
+    //    }
+
+    auto spi2 = Spi::getInstance(SPI2);
+    spi2->init(&spiConfig);
+
+    AccelWithoutInterrupt accelWithoutInterrupt(spi2);
+    if(accelWithoutInterrupt.isError()) {
+        // Error Accel
     }
-    
+
+    while(true) {
+    }
+
     return 0;
 }
