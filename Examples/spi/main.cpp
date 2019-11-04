@@ -158,14 +158,14 @@ int main()
     spiConfig.phase = Spi::Phase::_2E;
     spiConfig.firstBit = Spi::FirstBit::MSB;
 
-    //    auto spi1 = Spi::getInstance(SPI1);
-    //    spi1->init(&spiConfig);
-    //    spi1->createInterrupt();
-    //
-    //    AccelWithInterrupt accelWithInterrupt(spi1);
-    //    if(accelWithInterrupt.isError()) {
-    //        // Error Accel
-    //    }
+    auto spi1 = Spi::getInstance(SPI1);
+    spi1->init(&spiConfig);
+    spi1->createInterrupt();
+
+    AccelWithInterrupt accelWithInterrupt(spi1);
+    if(accelWithInterrupt.isError()) {
+        // Error Accel
+    }
 
     auto spi2 = Spi::getInstance(SPI2);
     spi2->init(&spiConfig);
@@ -177,6 +177,4 @@ int main()
 
     while(true) {
     }
-
-    return 0;
 }
