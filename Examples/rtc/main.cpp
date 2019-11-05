@@ -57,12 +57,15 @@ class SubjectsSecond : public SubjectObserver {
 int main()
 {
     // Initialisation RTC
-    auto rtc = Rtc::getInstance();
+    auto& rtc = Rtc::getInstance();
 
     // Time structure
     RTC_t time;
-    rtc->getTime(&time);
-
+    rtc.getTime(&time);
+    
+    // Create and enable interrupt
+    rtc.createInterrupt();
+    
     if(time.year == 2070) {
         time.year = 2019;
         time.month = 1;
@@ -70,7 +73,7 @@ int main()
         time.hour = 12;
         time.min = 0;
         time.sec = 0;
-        rtc->setTime(time);
+        rtc.setTime(time);
     }
 
     // Print various components of tm structure.
@@ -82,26 +85,23 @@ int main()
     std::cout << time.sec << std::endl;
 
     /// Get time in unix format
-    auto unixTimestamp = rtc->getTime();
+    auto unixTimestamp = rtc.getTime();
     std::cout << "Unix Timestamp " << unixTimestamp << std::endl;
 
-    // Create and enable interrupt
-    rtc->createInterrupt();
-
     // Register subscribers
-    rtc->addSubscriber(SubscriberFirst, Observer::Priority::HIGH);
-    rtc->addSubscriber(SubscriberSecond, Observer::Priority::LOW);
+    rtc.addSubscriber(SubscriberFirst, Observer::Priority::HIGH);
+    rtc.addSubscriber(SubscriberSecond, Observer::Priority::LOW);
 
     // Register subjects
     SubjectsFirst subjectFirst;
-    rtc->addSubscriber(&subjectFirst, Observer::Priority::HIGH);
+    rtc.addSubscriber(&subjectFirst, Observer::Priority::HIGH);
 
     SubjectsSecond subjectsSecond;
-    rtc->addSubscriber(&subjectsSecond);
+    rtc.addSubscriber(&subjectsSecond);
 
     // Set alarm time
     unixTimestamp += ALARM_TIME;
-    rtc->setAlarm(unixTimestamp);
+    rtc.setAlarm(unixTimestamp);
 
     while(true) {
         /*   Loop  code   */
@@ -110,8 +110,8 @@ int main()
 
         if(isAlarm) {
             isAlarm = false;
-            const auto alarmTime = rtc->getTime();
-            rtc->setAlarm(alarmTime + ALARM_TIME);
+            const auto alarmTime = rtc.getTime();
+            rtc.setAlarm(alarmTime + ALARM_TIME);
         }
     }
 }

@@ -8,9 +8,9 @@
 int main()
 {
     // Initialisation
-    auto iwdg = Watchdog::getInstance();
-    iwdg->init(1000);
-    iwdg->start();
+    auto& iwdg = Watchdog::getInstance();
+    iwdg.init(1000);
+    iwdg.start();
 
     while(true) {
         /*   Loop  code   */
