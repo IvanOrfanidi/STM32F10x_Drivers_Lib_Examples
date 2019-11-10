@@ -4,14 +4,14 @@
 #include <time.h>
 
 /* Driver lib */
-#include "soft_timer.hpp"
+#include "utils\soft_timer.hpp"
 
 // The general counter
 volatile std::time_t counter = 0;
 
 // Two counters
-volatile unsigned counter_1 = 0;
-volatile unsigned counter_2 = 0;
+volatile int counter_1 = 0;
+volatile int counter_2 = 0;
 
 /**
  * @brief Get clock

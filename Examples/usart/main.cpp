@@ -31,10 +31,14 @@ int main()
     uart3->init(&config);
     uart3->createInterrupt();
 
-    constexpr uint8_t msg[] = "Hello World!!!\r\n";
-    uart1->transmit(msg, (sizeof(msg) - 1));
-    uart2->transmit(msg, (sizeof(msg) - 1));
-    uart3->transmit(msg, (sizeof(msg) - 1));
+    constexpr char msg1[] = "USART #1\r\n";
+    uart1->transmit(msg1, strlen(msg1));
+
+    constexpr char msg2[] = "USART #2\r\n";
+    uart2->transmit(msg2, strlen(msg2));
+
+    constexpr char msg3[] = "USART #3\r\n";
+    uart3->transmit(msg3, strlen(msg3));
 
     uint8_t buffer[256];
     size_t len = 0;
