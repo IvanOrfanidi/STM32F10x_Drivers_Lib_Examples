@@ -3,7 +3,16 @@
 #include "exti.hpp"
 
 /// External Handler Interrupt
-void externalHandler();
+class ExternalHandler : public SubjectObserver {
+  public:
+    ExternalHandler() = default;
+
+    /// Virtual function update
+    virtual void update()
+    {
+        __NOP();
+    }
+};
 
 /**
  * @brief main
@@ -25,7 +34,8 @@ int main()
     // Enable interrupt
     exti.enable();
 
-    exti.addSubscriber(externalHandler);
+    ExternalHandler externalHandler;
+    exti.attach(&externalHandler);
 
     while(true) {
         /*   Loop  code   */
@@ -34,18 +44,4 @@ int main()
         /* -------------- */
         /******************/
     }
-}
-
-/**
- * External Handler Interrupt
- */
-void externalHandler()
-{
-    __NOP();
-
-    /*   Alarm  code   */
-    /* --------------- */
-    /* --------------- */
-    /* --------------- */
-    /*******************/
 }

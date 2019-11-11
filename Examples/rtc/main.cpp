@@ -62,10 +62,10 @@ int main()
     // Time structure
     RTC_t time;
     rtc.getTime(&time);
-    
+
     // Create and enable interrupt
     rtc.createInterrupt();
-    
+
     if(time.year == 2070) {
         time.year = 2019;
         time.month = 1;
@@ -88,16 +88,12 @@ int main()
     auto unixTimestamp = rtc.getTime();
     std::cout << "Unix Timestamp " << unixTimestamp << std::endl;
 
-    // Register subscribers
-    rtc.addSubscriber(SubscriberFirst, Observer::Priority::HIGH);
-    rtc.addSubscriber(SubscriberSecond, Observer::Priority::LOW);
-
     // Register subjects
     SubjectsFirst subjectFirst;
-    rtc.addSubscriber(&subjectFirst, Observer::Priority::HIGH);
+    rtc.attach(&subjectFirst, Observer::Priority::HIGH);
 
     SubjectsSecond subjectsSecond;
-    rtc.addSubscriber(&subjectsSecond);
+    rtc.attach(&subjectsSecond);
 
     // Set alarm time
     unixTimestamp += ALARM_TIME;
@@ -114,28 +110,4 @@ int main()
             rtc.setAlarm(alarmTime + ALARM_TIME);
         }
     }
-}
-
-/**
- * Alarm Handler Subscriber First Interrupt
- */
-void SubscriberFirst()
-{
-    /*   Subscriber First code   */
-    /* ------------------------- */
-    /*****************************/
-
-    isAlarm = true;
-}
-
-/**
- * Alarm Handler Subscriber Second Interrupt
- */
-void SubscriberSecond()
-{
-    /*   Subscriber Second code   */
-    /* -------------------------- */
-    /******************************/
-
-    isAlarm = true;
 }
