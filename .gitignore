@@ -22,3 +22,6 @@
 /Examples/spi/settings
 /Examples/spi/debug
 /Examples/spi/*.dep
+/Examples/gpio/settings
+/Examples/gpio/debug
+/Examples/gpio/*.dep
