@@ -13,8 +13,7 @@
 class AccelWithInterrupt {
   public:
     explicit AccelWithInterrupt(VirtualPort* port) :
-        _port(port),
-        _isError(false)
+        _port(port), _isError(false)
     {
         initGpioCs();
 
@@ -158,7 +157,7 @@ int main()
     spiConfig.phase = Spi::Phase::_2E;
     spiConfig.firstBit = Spi::FirstBit::MSB;
 
-    auto spi1 = Spi::getInstance(SPI1);
+    Spi* spi1 = Spi::getInstance(SPI1);
     spi1->init(&spiConfig);
     spi1->createInterrupt();
 
@@ -167,7 +166,7 @@ int main()
         // Error Accel
     }
 
-    auto spi2 = Spi::getInstance(SPI2);
+    Spi* spi2 = Spi::getInstance(SPI2);
     spi2->init(&spiConfig);
 
     AccelWithoutInterrupt accelWithoutInterrupt(spi2);

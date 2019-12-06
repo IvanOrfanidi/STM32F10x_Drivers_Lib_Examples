@@ -25,3 +25,6 @@
 /Examples/gpio/settings
 /Examples/gpio/debug
 /Examples/gpio/*.dep
+/Examples/i2c/settings
+/Examples/i2c/debug
+/Examples/i2c/*.dep
