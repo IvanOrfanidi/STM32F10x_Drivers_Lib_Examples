@@ -26,7 +26,7 @@ int main()
     config.trigger = Exti::Trigger::RISING_FALLING;
 
     // Initialisation EXT Interrupt
-    Exti exti(GPIOC, 2, &config);
+    Exti exti(GPIOC, 2, config);
 
     // Create interrupt
     exti.createInterrupt();

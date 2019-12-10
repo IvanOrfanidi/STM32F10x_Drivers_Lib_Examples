@@ -158,7 +158,7 @@ int main()
     spiConfig.firstBit = Spi::FirstBit::MSB;
 
     Spi* spi1 = Spi::getInstance(SPI1);
-    spi1->init(&spiConfig);
+    spi1->init(spiConfig);
     spi1->createInterrupt();
 
     AccelWithInterrupt accelWithInterrupt(spi1);
@@ -167,7 +167,7 @@ int main()
     }
 
     Spi* spi2 = Spi::getInstance(SPI2);
-    spi2->init(&spiConfig);
+    spi2->init(spiConfig);
 
     AccelWithoutInterrupt accelWithoutInterrupt(spi2);
     if(accelWithoutInterrupt.isError()) {

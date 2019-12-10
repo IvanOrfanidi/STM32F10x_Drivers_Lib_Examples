@@ -19,16 +19,16 @@ int main()
 
     // Create classes USARTs
     auto uart1 = Uart::getInstance(USART1);
-    uart1->init(&config);
+    uart1->init(config);
     uart1->createInterrupt();
 
     auto uart2 = Uart::getInstance(USART2);
-    uart2->init(&config);
+    uart2->init(config);
     uart2->createInterrupt();
 
     config.hardFlowControl = Uart::HardwareFlowControl::RTS_CTS;
     auto uart3 = Uart::getInstance(USART3);
-    uart3->init(&config);
+    uart3->init(config);
     uart3->createInterrupt();
 
     constexpr char msg1[] = "USART #1\r\n";
