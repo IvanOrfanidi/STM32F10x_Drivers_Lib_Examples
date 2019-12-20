@@ -1186,12 +1186,6 @@
         </settings>
     </configuration>
     <group>
-        <name>STM32F10x_Drivers_Lib</name>
-        <file>
-            <name>$PROJ_DIR$\..\..\STM32F10x_Drivers_Lib\inc\soft_timer.hpp</name>
-        </file>
-    </group>
-    <group>
         <name>System Core</name>
         <group>
             <name>Startup</name>
