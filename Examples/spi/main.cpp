@@ -7,82 +7,12 @@
 /* Driver lib */
 #include "spi.hpp"
 
-/**
- * 
- */
-class AccelWithInterrupt {
+class Accel {
   public:
-    explicit AccelWithInterrupt(VirtualPort* port) :
-        _port(port), _isError(false)
-    {
-        initGpioCs();
+    Accel() = delete;
+    ~Accel() = default;
 
-        constexpr uint8_t DEVICE_ID = 0;
-        const uint8_t chipType = read(DEVICE_ID);
-
-        constexpr uint8_t CHIP_ID = 0xE5;
-        if(CHIP_ID != chipType) {
-            _isError = true;
-            return;
-        }
-    }
-
-    bool isError() const
-    {
-        return _isError;
-    }
-
-  private:
-    void initGpioCs() const
-    {
-        GPIOA->CRL &= ~GPIO_CRL_CNF4;
-        GPIOA->CRL |= GPIO_CRL_MODE4_0;
-        GPIOA->BSRR = GPIO_BSRR_BS4;
-    }
-
-    uint8_t read(uint8_t address) const
-    {
-        uint16_t data[1];
-        data[0] = (address | 0x80) << 8;
-
-        enable();
-        _port->transmit(data, 1);
-
-        waitData();
-
-        _port->receive(data, 1);
-        disable();
-
-        return data[0];
-    }
-
-    void waitData() const
-    {
-        while(_port->isEmpty()) {
-        }
-    }
-
-    void enable() const
-    {
-        GPIOA->BSRR = GPIO_BSRR_BR4;
-        for(volatile int i = 0; i < 100; i++) {
-        }
-    }
-
-    void disable() const
-    {
-        for(volatile int i = 0; i < 100; i++) {
-        }
-        GPIOA->BSRR = GPIO_BSRR_BS4;
-    }
-
-    VirtualPort* _port;
-    bool _isError;
-};
-
-class AccelWithoutInterrupt {
-  public:
-    AccelWithoutInterrupt(Spi* spi) : _spi(spi), _isError(false)
+    Accel(Spi& spi) : _spi(spi), _isError(false)
     {
         initGpioCs();
 
@@ -126,23 +56,23 @@ class AccelWithoutInterrupt {
     uint8_t read(uint8_t address) const
     {
         enable();
-        _spi->write(((address << 1) & 0x7E) | 0x80);
+        _spi.write(((address << 1) & 0x7E) | 0x80);
 
         waitData();
 
-        const auto data = _spi->read();
+        const auto data = _spi.read();
         disable();
         return data;
     }
 
     void waitData() const
     {
-        _spi->waitingCompleteTransfer();
-        while(!_spi->isSetStatusFlag(SPI_SR_RXNE)) {
+        _spi.waitingCompleteTransfer();
+        while(!_spi.isSetStatusFlag(SPI_SR_RXNE)) {
         }
     }
 
-    Spi* _spi;
+    Spi& _spi;
     bool _isError;
 };
 
@@ -157,21 +87,23 @@ int main()
     spiConfig.phase = Spi::Phase::_2E;
     spiConfig.firstBit = Spi::FirstBit::MSB;
 
-    Spi* spi1 = Spi::getInstance(SPI1);
-    spi1->init(spiConfig);
-    spi1->createInterrupt();
+    auto& spi1 = Spi::getInstance(SPI1);
+    spi1.init(spiConfig);
 
-    AccelWithInterrupt accelWithInterrupt(spi1);
-    if(accelWithInterrupt.isError()) {
+    Accel accel(spi1);
+    if(accel.isError()) {
         // Error Accel
+        while(true) {
+        }
     }
 
-    Spi* spi2 = Spi::getInstance(SPI2);
-    spi2->init(spiConfig);
-
-    AccelWithoutInterrupt accelWithoutInterrupt(spi2);
-    if(accelWithoutInterrupt.isError()) {
+    auto& spi2 = Spi::getInstance(SPI2);
+    spi2.init(spiConfig);
+    Accel accel2(spi2);
+    if(accel2.isError()) {
         // Error Accel
+        while(true) {
+        }
     }
 
     while(true) {
